@@ -1,5 +1,8 @@
 import random
 from IPython.display import clear_output
+#Note that clear_output() will only work in jupyter.
+
+print('\n'*100)
 
 def display_board(board = ['1','2','3','4','5','6','7','8','9',]):
     draw = f" {board[6]} | {board[7]} | {board[8]} \n-----------\n {board[3]} | {board[4]} | {board[5]} \n-----------\n {board[0]} | {board[1]} | {board[2]} "
