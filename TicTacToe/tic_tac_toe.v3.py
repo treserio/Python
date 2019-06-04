@@ -152,6 +152,7 @@ while PLAY_AGAIN:
     clear_output()
     print('Welcome to TicTacToe!')
 
+    # setup board variable
     BOARD = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
     # initialize player list
@@ -179,24 +180,33 @@ while PLAY_AGAIN:
 
     # set turn keeper
     TURN = 0
+
     # while the board isn't full play the game
     while not full_board_check(BOARD):
+        # display the board
         display_board(BOARD)
         # get the first players move, and using player_choice()
         # check if their selected move is valid
         place_mark(BOARD, PLAYERS[TURN], player_choice(BOARD, PLAYERS[TURN]))
+
+        # check for a winner and display winning board if True
         if win_check(BOARD, PLAYERS[TURN]):
             # clear the previous board and display new board with winning move
             clear_output()
             display_board(BOARD)
             print(f"Congratultions {PLAYERS[TURN]} You've Won!")
             break
+
         # clear previous entries
         clear_output()
+
+        # set to current players turn 0 = first, 1 = second
         if TURN == 0:
             TURN = 1
         else:
             TURN = 0
+
+    # check for a tie game
     if full_board_check(BOARD) and not win_check(BOARD, PLAYERS[TURN]):
         print("Good Game! It's a Tie!")
 
