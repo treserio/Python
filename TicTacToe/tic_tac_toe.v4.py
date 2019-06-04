@@ -92,12 +92,12 @@ def choose_first():
 
     if random.randint(0, 1) == 0:
         return "1st"
-    else:
-        return "2nd"
+
+    return "2nd"
 
 
 def space_check(board, position):
-    
+
     '''Confirm if the position chosen is already occupied by a mark
     '''
 
@@ -188,7 +188,7 @@ while PLAY_AGAIN:
     print(f"{PLAYERS[0]} will be the first player")
 
     # set turn keeper
-    TURN = 0   
+    TURN = 0
     # while the board isn't full play the game
     while not full_board_check(BOARD):
         # display the board
