@@ -3,10 +3,15 @@ Play TicTacToe in the console!
 '''
 
 import random
-from IPython.display import clear_output
-#Note that clear_output() will only work in jupyter.
+# for Jupyter
+# from IPython.display import clear_output
+# Note that clear_output() will only work in jupyter.
 
-#print('\n'*100) for clearing outside of jupyter
+# function for clearing output
+def clear_output():
+    '''gives the impression of clearing the terminal by adding new lines
+    '''
+    print('\n'*50)
 
 # function to display the TicTacToe Board
 def display_board(board=None):
@@ -125,7 +130,7 @@ while PLAY_AGAIN:
     # The first player chooses their mark and it's assigned to a turn based on list location
     PLAYERS[choose_first()] = player_input()
 
-    # Find out which mark was setup from the above call
+    # Find out which mark was setup from the above call in which location in the list
     if PLAYERS[0] == "Plyr1":
         if PLAYERS[1] == "O":
             PLAYERS[0] = "X"
