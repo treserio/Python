@@ -1,5 +1,4 @@
-'''
-Play TicTacToe in the console!
+'''Play TicTacToe in the console!
 '''
 
 import random
@@ -12,7 +11,7 @@ import random
 
 def clear_output():
 
-    '''gives the impression of clearing the terminal by adding new lines
+    '''Gives the impression of clearing the terminal by adding new lines
     '''
 
     print('\n'*50)
