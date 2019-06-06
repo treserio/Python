@@ -11,10 +11,10 @@ import random
 
 def clear_output():
 
-    '''Gives the impression of clearing the terminal by adding new lines
+    '''Gives the impression of clearing the terminal by adding new 50 lines
     '''
 
-    print('\n'*50)
+    print('\n'*49)
 
 
 # function to display the TicTacToe Board
@@ -53,7 +53,7 @@ def player_input():
 
 def place_mark(board, mark, position):
 
-    '''Places the current players mark in the selected position
+    '''Places the current players mark in the selected list index
     '''
 
     board[position] = mark
@@ -97,7 +97,7 @@ def choose_first():
 
 def space_check(board, position):
 
-    '''Confirm if the position chosen is already occupied by a mark
+    '''Confirm if the list index is already occupied by a mark
     '''
 
     return board[position] in ("X", "O")
@@ -146,77 +146,78 @@ def replay():
     return input("Play again (Y/N): ").lower() == "y"
 
 
-# begin the TicTacToe application using the above functions
-# while Play_Again = True play TicTacToe
-PLAY_AGAIN = True
-while PLAY_AGAIN:
-    # display greeting
-    clear_output()
-    print('Welcome to TicTacToe!')
-
-    # setup board variable
-    BOARD = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-
-    # initialize player list, turns kept based on index
-    PLAYERS = ["1st", "2nd"]
-
-    # player1 is assigned a turn(0 for 1st, 1 for 2nd) and asked to choose a mark
-    if choose_first() == "1st":
-        TURN = 0
-    else:
-        TURN = 1
-
-    # assign player1's mark based on which turn they'll take
-    PLAYERS[TURN] = player_input()
-
-    # Find out which mark was setup from the above call in which location in the list
-    if PLAYERS[0] == "1st":
-        if PLAYERS[1] == "O":
-            PLAYERS[0] = "X"
-        else:
-            PLAYERS[0] = "O"
-    else:
-        if PLAYERS[0] == "O":
-            PLAYERS[1] = "X"
-        else:
-            PLAYERS[1] = "O"
-
-    # print(PLAYERS)
-
-    # show which mark takes the first turn
-    print(f"{PLAYERS[0]} will be the first player")
-
-    # set turn keeper
-    TURN = 0
-    # while the board isn't full play the game
-    while not full_board_check(BOARD):
-        # display the board
-        display_board(BOARD)
-        # get the first players move, and using player_choice()
-        # check if their selected move is valid
-        place_mark(BOARD, PLAYERS[TURN], player_choice(BOARD, PLAYERS[TURN]))
-
-        # check for a winner and display winning board if True
-        if win_check(BOARD, PLAYERS[TURN]):
-            # clear the previous board and display new board with winning move
-            clear_output()
-            display_board(BOARD)
-            print(f"Congratultions {PLAYERS[TURN]} You've Won!")
-            break
-
-        # clear previous entries
+if __name__ == '__main__':
+    # begin the TicTacToe application using the above functions
+    # while Play_Again = True play TicTacToe
+    PLAY_AGAIN = True
+    while PLAY_AGAIN:
+        # display greeting
         clear_output()
+        print('Welcome to TicTacToe!')
 
-        # set to current players turn (0 = 1st, 1 = 2nd)
-        if TURN == 0:
-            TURN = 1
-        else:
+        # setup board variable
+        BOARD = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+        # initialize player list, turns kept based on index
+        PLAYERS = ["1st", "2nd"]
+
+        # player1 is assigned a turn(0 for 1st, 1 for 2nd) and asked to choose a mark
+        if choose_first() == "1st":
             TURN = 0
+        else:
+            TURN = 1
 
-    # check for a tie game
-    if full_board_check(BOARD) and not win_check(BOARD, PLAYERS[TURN]):
-        print("Good Game! It's a Tie!")
+        # assign player1's mark based on which turn they'll take
+        PLAYERS[TURN] = player_input()
 
-    # check for rematch
-    PLAY_AGAIN = replay()
-print("Thank you for playing!")
+        # Find out which mark was setup from the above call in which location in the list
+        if PLAYERS[0] == "1st":
+            if PLAYERS[1] == "O":
+                PLAYERS[0] = "X"
+            else:
+                PLAYERS[0] = "O"
+        else:
+            if PLAYERS[0] == "O":
+                PLAYERS[1] = "X"
+            else:
+                PLAYERS[1] = "O"
+
+        # print(PLAYERS)
+
+        # show which mark takes the first turn
+        print(f"{PLAYERS[0]} will be the first player")
+
+        # set turn keeper
+        TURN = 0
+        # while the board isn't full play the game
+        while not full_board_check(BOARD):
+            # display the board
+            display_board(BOARD)
+            # get the first players move, and using player_choice()
+            # check if their selected move is valid
+            place_mark(BOARD, PLAYERS[TURN], player_choice(BOARD, PLAYERS[TURN]))
+
+            # check for a winner and display winning board if True
+            if win_check(BOARD, PLAYERS[TURN]):
+                # clear the previous board and display new board with winning move
+                clear_output()
+                display_board(BOARD)
+                print(f"Congratultions {PLAYERS[TURN]} You've Won!")
+                break
+
+            # clear previous entries
+            clear_output()
+
+            # set to current players turn (0 = 1st, 1 = 2nd)
+            if TURN == 0:
+                TURN = 1
+            else:
+                TURN = 0
+
+        # check for a tie game
+        if full_board_check(BOARD) and not win_check(BOARD, PLAYERS[TURN]):
+            print("Good Game! It's a Tie!")
+
+        # check for rematch
+        PLAY_AGAIN = replay()
+    print("Thank you for playing!")
